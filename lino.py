@@ -31,7 +31,7 @@ class Core:
         self.stack += [tmp]
     
     
-    def exist(self, n: str -> tuple:
+    def exist(self, n: str) -> tuple:
         return True if n in self.registers else False, True if n in self.points else False
         
     def get(self, n: str, flag: int) -> Any:
