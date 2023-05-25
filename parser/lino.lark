@@ -1,0 +1,18 @@
+start: all*
+
+?all: point | instruction
+
+point: CNAME "{" all* "}"
+instruction: CNAME ((INT | HEX | FLOAT | STRING | CNAME) ("," (INT | HEX | FLOAT | STRING | CNAME))*)
+
+INT: /[0-9][0-9_]*/
+HEX: /0x([_0-9a-fA-F])*/
+STRING: /".*?(?<!\\)"|'.*?(?<!\\)'/
+COMMENT: "//" /[^\n]*/ | "/*" /((?!\/)|[^*])*/ "*/"
+CNAME: /[_@$a-z.A-Z]+/ /[_@$a-z.A-Z0-9]*/
+ 
+%import common.FLOAT
+%import common.WS 
+  
+%ignore WS 
+%ignore COMMENT
